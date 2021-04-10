@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    <!-- Actual search box -->
+    <div class="form-group has-search">
+        <div class="row">  
+          <div class="col-xs-8 col-sm-9">
+            <input type="text" class="form-control" placeholder="Pesquise um endereço" [(ngModel)]="addressParam" name="search">
+          </div>
+          <div class="col-xs-3 col-sm-3">
+            <button type="button" class="btn btn-success" (click)="getDocuments()" name="search">Pesquisar</button>
+          </div>
+        </div>
+      <ul class="">
+        <li *ngFor="let document of documents">
+          {{document.address}}
+        </li>
+      </ul>
+    </div>
+  </div>
