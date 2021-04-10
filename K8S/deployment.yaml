@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-monprospecteur
+spec:
+  selector:
+    matchLabels:
+      app: front-monprospecteur
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: front-monprospecteur
+    spec:
+      containers:
+      - name: front-monprospecteur
+        image: zero101010/monprospecteur-front:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4200

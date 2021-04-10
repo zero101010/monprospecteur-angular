@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: |
+        npm install
+        npm run build
+    - name: Docker push
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        IMAGE: zero101010/monprospecteur-front:latest
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        docker build -t $IMAGE .
+        docker push $IMAGE
+
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - id: get-credentials
+      uses: google-github-actions/get-gke-credentials@main
+      with:
+        cluster_name: zeus
+        location: us-central1-c
+        credentials: ${{ secrets.gcp_credentials }}
+    - id: get-nodes
+      run: kubectl apply -f K8S/

@@ -9,9 +9,9 @@
             <button type="button" class="btn btn-success" (click)="getDocuments()" name="search">Pesquisar</button>
           </div>
         </div>
-      <ul class="">
-        <li *ngFor="let document of documents">
-          {{document.address}}
+      <ul class="mt-5">
+        <li *ngFor="let d of data">
+          {{d.address}}
         </li>
       </ul>
     </div>
