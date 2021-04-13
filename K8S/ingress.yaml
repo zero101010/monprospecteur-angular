@@ -11,9 +11,4 @@ spec:
     - front.devopstests.com
     secretName: echo-tls
   rules:
-  - host: front.devopstests.com
-    http:
-      paths:
-      - backend:
-          serviceName: front-monprospecteur
-          servicePort: 4200
+  
