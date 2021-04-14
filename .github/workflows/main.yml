@@ -13,7 +13,7 @@ jobs:
         node-version: '10.x'
     - run: |
         npm install
-        npm run build
+        npm run build:prod
     - name: Docker push
       env:
         DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
@@ -36,4 +36,4 @@ jobs:
         location: us-central1-c
         credentials: ${{ secrets.gcp_credentials }}
     - id: get-nodes
-      run: kubectl apply -f K8S/
+      run: kubectl rollout restart deployment/front-monprospecteur

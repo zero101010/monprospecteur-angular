@@ -1,27 +1,26 @@
 # MonprospecteurAngular
+## Instalação
+- É necessário instalar as dependências dos projetos executando o `npm install`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
+## Rodar em modo de dev
+- Para rodarmos em modo de dev após a instalação tudo que devemos fazer é executar o `npm start`
 
-## Development server
+## Rodar em modo de produção
+### Build
+- Para rodar o modo de produção precisamos antes buildar a aplicação, pois quando estamos falando de frontend precisamos gerar os arquivos estáticos para servi-los para a web
+nesse caso usamos o comando `npm run build:prod`, pois precisamos injetar as variáveis de ambiente em prod
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Execução com npm
+- Podemos executar o resultado da build rodando o comando `npm run server` 
+### Execução com Docker
+- Para executar aplicação com o docker, apois gerar a build, é necessário executar o comando `docker build -t front .` para executar a build da imagem e após executar o comando `docker run -p 4200:4200 front`
 
-## Code scaffolding
+OBS: A build da imagem é diferente da build do projeto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Fluxos para facilitar o entendimento:
+dev = instalação->Rodar em modo de dev
 
-## Build
+prod-com docker= instalação->build->buildar docker-> executar docker
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+prod sem docker= instalação->build-> rodar execução com npm
+ 
